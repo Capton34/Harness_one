@@ -1,0 +1,33 @@
+pipeline:
+  name: Python_deployment_hub
+  identifier: Python_deployment_hub
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: python_deployment_hub
+        build: <+input>
+  stages:
+    - stage:
+        name: Python_deployment
+        identifier: Python_deployment
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Windows
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Action
+                  name: Github Action plugin_1
+                  identifier: GithubActionplugin_1
+                  spec:
+                    uses: Python_deployment
